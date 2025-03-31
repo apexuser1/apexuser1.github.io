@@ -36,19 +36,32 @@
       // Function to update placeholder text
       function updatePlaceholderText() {
         const currentPage = dfMessenger.getAttribute('current-page');
+        console.log('Current Page:', currentPage); // Log the current page
+
         if (currentPage !== 'Disclaimer') {
-          const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat input');
+          const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat placeholder-text');
           if (inputElement) {
-            inputElement.placeholder = 'Please enter 0..5';
+            inputElement.placeholder = 'How can I help you?';
+            console.log('Placeholder updated to:', inputElement.placeholder); // Log the updated placeholder
+          } else {
+            console.warn('Input element not found'); // Log a warning if the input element is not found
           }
+        } else {
+          console.log('On Disclaimer page, placeholder not updated'); // Log when on the Disclaimer page
         }
       }
 
       // Listen for page changes
-      dfMessenger.addEventListener('page-change', updatePlaceholderText);
+      dfMessenger.addEventListener('page-change', (event) => {
+        console.log('Page Change Event:', event); // Log the page change event
+        updatePlaceholderText();
+      });
 
       // Initial update
+      console.log('Initializing placeholder text'); // Log the initial update
       updatePlaceholderText();
+    } else {
+      console.error('df-messenger or its shadowRoot not found'); // Log an error if the component is not found
     }
   });
 </script>
