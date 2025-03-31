@@ -5,10 +5,10 @@
   project-id="erectile-dysfunction-455203"
   agent-id="f4c65b0e-8777-49ac-9dc1-f4ea6c046850"
   language-code="en"
-  max-query-length="-1">
+  max-query-length="-1"
+  placeholder="How can I help you?">
   <df-messenger-chat
-    chat-title="Dr Edis AI v0.1"
-    placeholder="How can I help you?">
+    chat-title="Dr Edis AI">
   </df-messenger-chat>
 </df-messenger>
 <style>
@@ -24,44 +24,5 @@
     right: 0;
     top: 0;
     width: 350px;
-    
-    /* Try all possible CSS variable names */
-    --df-messenger-input-placeholder: "How can I help you?";
-    --df-messenger-input-placeholder-text: "How can I help you?";
-    --df-messenger-chat-input-placeholder: "How can I help you?";
-  }
-  
-  /* Additional attempt using direct CSS targeting */
-  df-messenger-chat input::placeholder {
-    content: "How can I help you?";
   }
 </style>
-
-<script>
-  // Add this script to ensure the placeholder is set after the component is fully loaded
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      const dfMessenger = document.querySelector('df-messenger');
-      if (dfMessenger) {
-        dfMessenger.setAttribute('placeholder', 'How can I help you?');
-        
-        const dfChat = document.querySelector('df-messenger-chat');
-        if (dfChat) {
-          dfChat.setAttribute('placeholder', 'How can I help you?');
-        }
-        
-        // Try to find the input element directly
-        const shadowRoot = dfMessenger.shadowRoot;
-        if (shadowRoot) {
-          const chatContainer = shadowRoot.querySelector('df-messenger-chat');
-          if (chatContainer && chatContainer.shadowRoot) {
-            const inputElement = chatContainer.shadowRoot.querySelector('input');
-            if (inputElement) {
-              inputElement.placeholder = 'How can I help you?';
-            }
-          }
-        }
-      }
-    }, 1000); // Wait 1 second for components to fully initialize
-  });
-</script>
