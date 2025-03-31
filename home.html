@@ -8,7 +8,7 @@
   max-query-length="-1"
   intent="intent">
   <df-messenger-chat
-    chat-title="Dr Edis AI v.02" 
+    chat-title="Dr Edis AI v.03" 
     placeholder-text="Do you agree?">
   </df-messenger-chat>
 </df-messenger>
@@ -27,3 +27,28 @@
     width: 350px;
   }
 </style>
+
+<script>
+  // Wait for the component to be fully loaded
+  window.addEventListener('df-messenger-loaded', () => {
+    const dfMessenger = document.querySelector('df-messenger');
+    if (dfMessenger && dfMessenger.shadowRoot) {
+      // Function to update placeholder text
+      function updatePlaceholderText() {
+        const currentPage = dfMessenger.getAttribute('current-page');
+        if (currentPage !== 'Disclaimer') {
+          const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat input');
+          if (inputElement) {
+            inputElement.placeholder = 'Please enter 0..5';
+          }
+        }
+      }
+
+      // Listen for page changes
+      dfMessenger.addEventListener('page-change', updatePlaceholderText);
+
+      // Initial update
+      updatePlaceholderText();
+    }
+  });
+</script>
