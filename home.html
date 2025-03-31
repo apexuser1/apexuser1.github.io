@@ -8,7 +8,7 @@
   max-query-length="-1"
   intent="intent">
   <df-messenger-chat
-    chat-title="Dr Edis AI v.04" 
+    chat-title="Dr Edis AI v.05" 
     placeholder-text="Do you agree?">
   </df-messenger-chat>
 </df-messenger>
@@ -29,40 +29,15 @@
 </style>
 
 <script>
-  // Wait for the component to be fully loaded
-  window.addEventListener('df-messenger-loaded', () => {
-    const dfMessenger = document.querySelector('df-messenger');
-    console.log('Loaded');
-    if (dfMessenger) {
-      // Function to update placeholder text
-      function updatePlaceholderText() {
-        const currentPage = dfMessenger.getAttribute('current-page');
-        console.log('Current Page:', currentPage); // Log the current page
-
-        if (currentPage !== 'Disclaimer') {
-          const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat placeholder-text');
-          if (inputElement) {
-            inputElement.placeholder = 'How can I help you?';
-            console.log('Placeholder updated to:', inputElement.placeholder); // Log the updated placeholder
-          } else {
-            console.warn('Input element not found'); // Log a warning if the input element is not found
-          }
-        } else {
-          console.log('On Disclaimer page, placeholder not updated'); // Log when on the Disclaimer page
-        }
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      const dfMessenger = document.querySelector('df-messenger');
+      if (dfMessenger && dfMessenger.shadowRoot) {
+        console.log('Dialogflow CX Messenger has loaded');
+        // Your code here
+      } else {
+        console.warn('Dialogflow CX Messenger not loaded yet');
       }
-
-      // Listen for page changes
-      dfMessenger.addEventListener('page-change', (event) => {
-        console.log('Page Change Event:', event); // Log the page change event
-        updatePlaceholderText();
-      });
-
-      // Initial update
-      console.log('Initializing placeholder text'); // Log the initial update
-      updatePlaceholderText();
-    } else {
-      console.error('df-messenger or its shadowRoot not found'); // Log an error if the component is not found
-    }
+    }, 1000); // Adjust the timeout as needed
   });
 </script>
