@@ -8,8 +8,8 @@
   max-query-length="-1"
   intent="intent">
   <df-messenger-chat
-    chat-title="Dr Edis AI v.08" 
-    placeholder-text="Do you agree?">
+    chat-title="Dr Edis AI (v.01)" 
+    placeholder-text="Lets go...">
   </df-messenger-chat>
 </df-messenger>
 <style>
@@ -27,33 +27,4 @@
     width: 350px;
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-      const dfMessenger = document.querySelector('df-messenger');
-      if (dfMessenger && dfMessenger.shadowRoot) {
-        console.log('Dialogflow CX Messenger has loaded');
-        function updatePlaceholderText() {
-          const currentPage = dfMessenger.getAttribute('current-page');
-          console.log('Current Page:', currentPage); // Log the current page
-  
-          if (currentPage !== 'Disclaimer') {
-            const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat placeholder-text');
-            if (inputElement) {
-              inputElement.placeholder = 'How can I help you?';
-              console.log('Placeholder updated to:', inputElement.placeholder); // Log the updated placeholder
-            } else {
-              console.warn('Input element not found'); // Log a warning if the input element is not found
-            }
-          } else {
-            console.log('On Disclaimer page, placeholder not updated'); // Log when on the Disclaimer page
-          }
-        }
-        updatePlaceholderText();
-      } else {
-        console.warn('Dialogflow CX Messenger not loaded yet');
-      }
-    }, 1000); // Adjust the timeout as needed
-  });
 </script>
