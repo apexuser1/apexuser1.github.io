@@ -39,7 +39,7 @@
           console.log('Current Page:', currentPage); // Log the current page
   
           if (currentPage !== 'Disclaimer') {
-            const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat input');
+            const inputElement = dfMessenger.shadowRoot.querySelector('df-messenger-chat placeholder-text');
             if (inputElement) {
               inputElement.placeholder = 'How can I help you?';
               console.log('Placeholder updated to:', inputElement.placeholder); // Log the updated placeholder
